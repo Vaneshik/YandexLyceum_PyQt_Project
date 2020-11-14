@@ -114,6 +114,7 @@ for id, url in enumerate(urls):
 
         genres_bad = re.sub(regexp_clear, ', ', data['жанр'])
         years_bad = data['годы']
+
         if 'темы' in data:
             themes_bad = re.sub(regexp_clear, ', ', data['темы'])
             themes = themes_bad[themes_bad.index(':') + 2:].split(', ')

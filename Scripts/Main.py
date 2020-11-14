@@ -116,10 +116,13 @@ border-radius: 20px;""")
 
         if data[0] == 1:
             self.btn1.setChecked(True)
+
         if data[1] == 1:
             self.btn2.setChecked(True)
+
         if data[2] == 1:
             self.btn3.setChecked(True)
+
         if data[3] == 1:
             self.btn4.setChecked(True)
 
@@ -141,13 +144,15 @@ class Lists(QWidget, Ui_Form1):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.pushButton.clicked.connect(to_main)
+
+
         self.layout_scroll = QVBoxLayout(self)
         self.frame = QWidget(self)
         self.frame.setLayout(self.layout_scroll)
         self.scrollArea.setWidget(self.frame)
         self.display_viewed()
 
+        self.pushButton.clicked.connect(to_main)
         self.favour_butn.clicked.connect(self.display_favour)
         self.viewed_butn.clicked.connect(self.display_viewed)
         self.quited_butn.clicked.connect(self.display_quited)
@@ -191,6 +196,7 @@ class Search(QWidget, Ui_Form):
 
         self.pushButton.clicked.connect(to_main)
         self.pushButton_2.clicked.connect(self.search_bd)
+
         self.layout_scroll = QVBoxLayout(self)
         self.wget = QWidget(self)
         self.wget.setLayout(self.layout_scroll)
@@ -209,7 +215,7 @@ class Search(QWidget, Ui_Form):
         """Поиск и вывод аниме"""
         clear_layout(self.layout_scroll)
         text = self.lineEdit.text()
-        text = '%' + text.replace(' ', "%") + '%'
+        text = '%' + text.replace(' ', '%') + '%'
         res = cur.execute(
             f'SELECT id, title, orig_name FROM anime WHERE title LIKE ? OR orig_name LIKE ? COLLATE NOCASE',
             (text, text)).fetchall()
@@ -223,6 +229,7 @@ class Main(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
         self.pushButton.clicked.connect(self.to_search)
         self.pushButton_2.clicked.connect(self.to_lists)
 

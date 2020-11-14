@@ -15,6 +15,7 @@ for i in range(1, 22):
     print(f'Request #{i} done!')
     soup = BeautifulSoup(req.content, 'lxml')
     out.extend(['https://jut.su' + i.a['href'] for i in soup.find_all('div', attrs={'class': "all_anime_global"})])
+
     sleep(5)
 
 with open('../Data/urls.txt', 'w') as f:
